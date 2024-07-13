@@ -245,7 +245,7 @@ export default function SignUp(props) {
           className="mt-2 w-full"
           type="submit"
         >
-          Sign In With Google
+          Sign Up With Google
         </Button>
         <div className="text-center">
         Already have an account? {" "}

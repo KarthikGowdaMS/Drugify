@@ -50,10 +50,10 @@ const AddDrug = (props) => {
 
   return (
     <div className="py-36">
-      <h1 className='text-center mb-4'>Add Drug</h1>
+      <h1 className='text-center mb-4 title'>Add Drug</h1>
       <form className="health-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Drug Name:</label>
+          <label className='label'>Drug Name:</label>
           <input
             type="text"
             name="name"
@@ -66,7 +66,7 @@ const AddDrug = (props) => {
         </div>
 
         <div className="form-group">
-          <label>Drug Description:</label>
+          <label className='label'>Drug Description:</label>
           <input
             type="text"
             name="description"
@@ -78,7 +78,7 @@ const AddDrug = (props) => {
           />
         </div>
         <div className="form-group">
-          <label>Drug Ingredients:</label>
+          <label className='label'>Drug Ingredients:</label>
           {drugIngredients.map((history, index) => (
             <div key={index}>
               <input

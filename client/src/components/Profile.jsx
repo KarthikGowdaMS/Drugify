@@ -63,12 +63,12 @@ export default function Profile() {
     <div className="container mt-5 py-8">
       <div className="card mb-5">
         <div className="card-body">
-          <h1 className="card-title text-center">
+          <h1 className="card-title text-center title">
             {' '}
             {greeting}, {username}
           </h1>
           <hr />
-          <h4 className="text-center m-3">Personal Details</h4>
+          <h4 className="text-center m-3 sub-title">Personal Details</h4>
           {data ? (
             <div className="profile-data">
               <div className="mb-3">
@@ -89,14 +89,14 @@ export default function Profile() {
               </div>
             </div>
           ) : (
-            <p className="text-center">Loading Profile.... </p>
+            <p className="text-center sub-title">Loading Profile.... </p>
           )}
         </div>
       </div>
 
       <div className="card">
         <div className="card-body">
-          <h4 className="card-title text-center m-3">Your Drugs</h4>
+          <h4 className="card-title text-center m-3 sub-title">Your Drugs</h4>
           <ul className="list-group">
           {drugs ? (
         drugs.length > 0 ? (
@@ -116,10 +116,10 @@ export default function Profile() {
             </div>
           ))
         ) : (
-          <p className="text-center">No Data</p>
+          <p className="text-center sub-title">No Data</p>
         )
       ) : (
-        <p className="text-center">Loading Drugs.... </p>
+        <p className="text-center sub-title">Loading Drugs.... </p>
       )}
           </ul>
         </div>

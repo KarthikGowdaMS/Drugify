@@ -138,8 +138,8 @@ export default function Header() {
         isLoggedIn ? 'py-2' : 'pt-3'
       }`}
     >
-      <Navbar.Brand href="/" className='no-underline'>
-        <span className="self-center whitespace-nowrap text-xl font-semibold custom-font text-white">
+      <Navbar.Brand href="/" className=' title no-underline text-xl self-center whitespace-nowrap  font-semibold custom-font text-white'>
+        <span>
           Drugify
         </span>
       </Navbar.Brand>
@@ -195,13 +195,13 @@ export default function Header() {
       {isLoggedIn && (
         <Navbar.Collapse className="navbar-collapse-custom">
           <Navbar.Link as={Link} to="/search" className="nav-link">
-            <span className="text-lg">Search</span>
+            <span className="text-lg links">Search</span>
           </Navbar.Link>
           <Navbar.Link as={Link} to="/search/history" className="nav-link">
-            <span className="text-lg">History</span>
+            <span className="text-lg links">History</span>
           </Navbar.Link>
           <Navbar.Link as={Link} to="/drug/add" className="nav-link">
-            <span className="text-lg">Add Drug</span>
+            <span className="text-lg links">Add Drug</span>
           </Navbar.Link>
         </Navbar.Collapse>
       )}

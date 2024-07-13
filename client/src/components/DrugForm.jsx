@@ -19,6 +19,7 @@ const DrugForm = (props) => {
             id="scr"
             onChange={(e) => setDrugName(e.target.value)}
             value={drugName}
+            className='input-text'
           ></input>
           <br />
           <button type="submit" id="btn" disabled={props.isSearching}>

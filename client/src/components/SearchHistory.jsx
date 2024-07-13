@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DrugInfo from './DrugInfo'; // Adjust the import path as necessary
 import BASE_URL from '../config';
-
+import '../css/Search.css';
 const SearchHistory = () => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ const SearchHistory = () => {
 
   return (
     <div className='container mt-5 py-8'>
-      <h1 className='text-center mb-5'>Search History</h1>
+      <h1 className='text-center mb-5 title'>Search History</h1>
       {loading ? (
       <p className='text-center'>Loading...</p>
     ) : history.length > 0 ? (

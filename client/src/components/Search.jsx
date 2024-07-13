@@ -4,6 +4,7 @@ import axios from 'axios';
 import DrugForm from './DrugForm';
 import DrugInfo from './DrugInfo';
 import BASE_URL from '../config';
+import '../css/Search.css';
 import { AuthContext } from '../context/logincontext';
 import { UsernameContext } from '../context/usernamecontext';
 const SearchPage = () => {
@@ -48,7 +49,7 @@ const SearchPage = () => {
 
   return (
     <div className="container py-8 mt-5">
-      <h1 className="text-center">Search Drug</h1>
+      <h1 className="text-center title">Know Your Drug</h1>
       <DrugForm onSearch={handleSearch} isSearching={isLoading} />
       {isLoading ? (
         <p className="text-center text-lg">Searching...</p>

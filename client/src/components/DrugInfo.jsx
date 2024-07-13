@@ -17,7 +17,7 @@ const DrugInfo = (props) => {
       <div className="list-group-item"><strong>Alternatives:</strong>
         <ul>
           {props.drug.Alternatives.map((alt, index) => (
-            <li key={index} className="ingredients">{alt.Name} - {alt.Quantity} mg</li>
+            <li key={index} className="ingredients">{alt.name} - {alt.quantity} mg</li>
           ))}
         </ul>
       </div>
