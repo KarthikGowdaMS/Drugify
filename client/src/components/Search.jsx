@@ -51,7 +51,7 @@ const SearchPage = () => {
       <h1 className="text-center">Search Drug</h1>
       <DrugForm onSearch={handleSearch} isSearching={isLoading} />
       {isLoading ? (
-        <p className="text-center">Loading...</p>
+        <p className="text-center text-lg">Searching...</p>
       ) : (
         <DrugInfo drug={drug} message={message} />
       )}

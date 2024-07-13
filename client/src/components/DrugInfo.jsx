@@ -5,7 +5,7 @@ import '../css/Profile.css';
 
 const DrugInfo = (props) => {
   if (!props.drug) {
-    return <div className='text-center'>{props.message}</div>;
+    return <div className='text-center text-lg'>{props.message}</div>;
   }
 
   return (

@@ -83,6 +83,11 @@ const getDrugDetails = async (req, res) => {
     const parsedJson = JSON.parse(jsonResponse);
 
     // Save the result in the database
+
+      if(parsedJson.Name === null){
+        return res.status(404).json({ message: 'Drug not found' });
+      }
+
     await Result.insertOne({
       user: userId,
       Name: parsedJson.Name,

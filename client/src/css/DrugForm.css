@@ -1,1 +1,84 @@
-/* Container for the form to center it on the page */
+.scr-btn{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    height: 10vh;
+    margin-bottom: 5rem;
+
+    
+}
+#scr{
+    display: flex;
+    /* margin: auto; */
+    justify-content: center;
+    width: 400px;
+    height: 42px;
+    padding-left: 20px;
+    font-size: larger;
+    border: 2px solid black;
+    box-shadow: 2px 6px;
+    border-radius: 24px;
+    
+}
+
+#btn {
+    border-radius: 24px;
+    border: black solid 2px;
+    /* border: none; */
+    color: black;
+    text-align: center;
+    font-size: larger;
+    padding: 6px;
+    width: 140px;
+    height: 42px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    box-shadow: 2px 6px;
+}
+
+/* #btn {
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  } */
+  
+
+#btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+#btn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+#btn:hover span {
+    padding-right: 25px;
+}
+
+#btn:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/* #btn:hover{
+    background-color: rgb(119, 124, 128);
+} */

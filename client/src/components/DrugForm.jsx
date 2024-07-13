@@ -10,21 +10,21 @@ const DrugForm = (props) => {
   };
 
   return (
-    <div className="py-10">
-      <form className="health-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Enter Drug Name:</label>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div className="scr-btn">
           <input
             type="text"
-            name="name"
-            value={drugName}
+            placeholder="Search Here..."
+            id="scr"
             onChange={(e) => setDrugName(e.target.value)}
-            placeholder="Drug Name"
-            required
-            className="form-control"
-          />
+            value={drugName}
+          ></input>
+          <br />
+          <button type="submit" id="btn" disabled={props.isSearching}>
+            <span>Search</span>
+          </button>
         </div>
-        <button type="submit" className='btn btn-primary' disabled={props.isSearching}>Search</button>
       </form>
     </div>
   );
