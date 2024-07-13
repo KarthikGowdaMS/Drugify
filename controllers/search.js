@@ -31,7 +31,7 @@ const getDrugDetails = async (req, res) => {
       threadByUser[userId], // Use the stored thread ID for this user
       {
         role: 'user',
-        content: `Provide information about the following drug :${drugName}\n\n### Fields:\n- **Name**: The name of the drug.\n- **Permitted**: Is the drug permitted for use by athletes? (Yes/No)\n- **Description**: A brief description of the drug, its uses, and why it might be prohibited.\n- **Ingredients**: [the common name of  main ingredients in the drug.]\n- **Alternatives**: Alternative drugs that are not prohibited with name and quantity in mg in number format. return the json object only.\n\n`,
+        content: `Provide information about the following drug :${drugName}\n\n### Fields:\n- **Name**: The name of the drug.\n- **Permitted**: Is the drug permitted for use by athletes? (Yes/No)\n- **Description**: A brief description of the drug, its uses, and why it might be prohibited.\n- **Ingredients**: [the common name of  main ingredients in the drug.]\n- **Alternatives**: Alternative drugs that are not prohibited with name and quantity in number format. return the json object only.\n\n`,
       }
     );
     console.log('This is the message object: ', myThreadMessage, '\n');
@@ -103,6 +103,7 @@ const getDrugDetails = async (req, res) => {
 };
 
 const searchHistory = async (req, res) => {
+  console.log("here");
   const userId = req.user._id;
   if (!userId) {
     return res.status(400).json({ message: 'User not found' });
@@ -112,7 +113,7 @@ const searchHistory = async (req, res) => {
   if (!results) {
     return res.status(404).json({ message: 'No search history found' });
   }
-  res.json(results);
+  res.status(200).json({ results });
 };
 
 // Export the controller

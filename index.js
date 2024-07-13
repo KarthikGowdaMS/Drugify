@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
+const passportSetup = require('./config/passport');
 
 const authRoute = require('./routes/auth.js');
 const drugRoute = require('./routes/drug.js');

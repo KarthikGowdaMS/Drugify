@@ -18,8 +18,12 @@ const getDrug = async (req, res) => {
 const postDrug = async (req, res) => {
   const user = req.user._id;
   const { name, ingredients, description } = req.body;
+  const drug= await Drug.findOne({name:name,user:user});
+  if(drug){
+    return res.status(400).json({ message: 'Drug already exists' });
+  }
   await Drug.insertOne({ name, ingredients, user, description });
-  res.json({ message: 'Drug added successfully' });
+  res.status(200).json({ message: 'Drug added successfully' });
 };
 
 const updateDrug = async (req, res) => {

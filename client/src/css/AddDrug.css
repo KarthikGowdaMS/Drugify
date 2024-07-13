@@ -1,0 +1,32 @@
+.health-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .health-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .health-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .health-form .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .health-form .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+  

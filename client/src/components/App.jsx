@@ -4,12 +4,14 @@ import { AuthProvider } from '../context/logincontext';
 import { UsernameProvider } from '../context/usernamecontext';
 import Login from './Login';
 import Signup from './Signup';
-import Home from './Home';
+import Landing from './Landing';
 import AddAdditionalData from './AddAdditionalData';
-// import Profile from './Profile';
-// import Header from './Header';
-// import Dashboard from './Dashboard';
-import {Alert} from './Alert';
+import Profile from './Profile';
+import Search from './Search';
+import Header from './Header';
+import { Alert } from './Alert';
+import AddDrug from './AddDrug';
+import SearchHistory from './SearchHistory';
 
 function App() {
   const [alert, setalert] = useState(null);
@@ -28,10 +30,10 @@ function App() {
       <Router>
         <AuthProvider>
           <UsernameProvider>
-            {/* <Header /> */}
+            <Header />
             <Alert alert={alert} />
             <Routes>
-              <Route exact path="/" element={<Home />} />
+              <Route exact path="/" element={<Landing />} />
               <Route
                 exact
                 path="/login"
@@ -42,14 +44,33 @@ function App() {
                 path="/signup"
                 element={<Signup showAlert={showAlert} />}
               />
-              {/* <Route exact path="/search" element={<Search />} /> */}
-              {/* <Route exact path="/profile/:username" element={<Profile />} /> */}
+              <Route
+                exact
+                path="/search"
+                element={<Search showAlert={showAlert} />}
+              />
+
+              <Route
+                exact
+                path="/search/history"
+                element={<SearchHistory showAlert={showAlert} />}
+              />
+
+              <Route
+                exact
+                path="/profile"
+                element={<Profile showAlert={showAlert} />}
+              />
               <Route
                 exact
                 path="/addAccountData"
-                element={<AddAdditionalData showAlert={showAlert}/>}
+                element={<AddAdditionalData showAlert={showAlert} />}
               />
-              
+              <Route
+                exact
+                path="/drug/add"
+                element={<AddDrug showAlert={showAlert} />}
+              />
             </Routes>
           </UsernameProvider>
         </AuthProvider>

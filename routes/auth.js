@@ -16,7 +16,7 @@ const ensureAuthenticated = require('../middleware/ensureAuthenticated.js');
 authRoute.post('/signup', signup);
 authRoute.post('/signin', login);
 authRoute.get('/logout', logout);
-authRoute.get('/user', ensureAuthenticated, getUser);
+authRoute.get('/user', getUser);
 authRoute.get('/profile', ensureAuthenticated, profile);
 authRoute.post('/update', ensureAuthenticated, updateUser);
 authRoute.get('/google', googleLogin);

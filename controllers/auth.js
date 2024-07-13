@@ -3,6 +3,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20');
 const User = require('../db.js').collection('Users');
+const ensureAuthenticated = require('../middleware/ensureAuthenticated.js');
 const bCrypt = require('bcrypt-nodejs');
 var { ObjectId } = require('mongodb');
 
@@ -123,8 +124,6 @@ const googleCallback = passport.authenticate('google', {
 const successLogin = async (req, res) => {
   try {
     if (req.user) {
-      // console.log("hello")
-      // set the cookie set the user as authenticated
       res.cookie('email', req.user.email);
       res.cookie('username', req.user.username);
       res.cookie('userId', req.user._id);
@@ -150,8 +149,8 @@ const successLogin = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const userId = req.user._id; // Assuming you store the user's ID in req.user
-    const updateFields = req.body; // This can include any number of fields to update
+    const userId = req.user._id;
+    const updateFields = req.body;
 
     if (!ObjectId.isValid(userId)) {
       return res.status(400).json({ message: 'Invalid user ID' });
@@ -165,6 +164,10 @@ const updateUser = async (req, res) => {
         updateObject[key] = value;
       }
     }
+    const user = await User.findOne({ username: updateFields.username });
+    if (user) {
+      return res.status(400).json({ message: 'Username already exists' });
+    }
 
     const result = await User.updateOne(
       { _id: new ObjectId(userId) },
@@ -174,6 +177,8 @@ const updateUser = async (req, res) => {
     if (result.matchedCount === 0) {
       return res.status(404).json({ message: 'User not found' });
     }
+    req.user.username = updateFields.username;
+
     res.cookie('name', req.user.name);
     res.cookie('email', req.user.email);
     res.cookie('username', req.user.username);

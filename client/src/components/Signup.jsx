@@ -43,6 +43,8 @@ export default function SignUp(props) {
           email: credentials.email,
           password: credentials.password,
           username: credentials.username,
+          mobile: credentials.mobile,
+          age: credentials.age,
         },
         { withCredentials: true } // Include this in the request config
       );
@@ -55,6 +57,7 @@ export default function SignUp(props) {
           props.showAlert('Signup Success', 'success');
           setUsername(json.user.username);
           setIsLoggedIn(true);
+          props.showAlert('Login Success', 'success');
           navigate('/Search');
         }
       } else {
@@ -231,7 +234,7 @@ export default function SignUp(props) {
             required
             className="w-full"
             onChange={handleChange}
-            name="number"
+            name="mobile"
           />
         </div>
         <Button type="submit" className="mt-4 w-full">
@@ -245,8 +248,9 @@ export default function SignUp(props) {
           Sign In With Google
         </Button>
         <div className="text-center">
+        Already have an account? {" "}
           <Link to="/login" className="text-slate-500 hover:text-slate-700">
-            <span>Already have an account? Sign In</span>
+            <span>Sign In</span>
           </Link>
         </div>
       </form>

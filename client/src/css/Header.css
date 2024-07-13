@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.custom-font {
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 8px 10px;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffcc00; /* Change to your desired hover color */
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+.navbar-brand, .nav-link {
+  text-decoration: none !important;
+  color: white;
+}
+
+.navbar {
+  background-color: #1a202c; /* Custom navbar color */
+}
+.navbar-fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+
+
+.navbar-collapse-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-custom-button {
+  background-color: white; /* Tailwind class bg-blue-300 */
+  color: #000; /* Tailwind class text-black */
+  margin-left: 1.25rem; /* Tailwind class ml-5 */
+  border: none;
+  padding: 0.3rem ;
+}
+.navbar-custom-button-text {
+  font-size: 1.2rem; /* Adjust the text size as needed */
+}
+
+@media (max-width: 768px) {
+  .navbar-fixed-height {
+    height: auto;
+    padding: 1rem;
+  }
+
+  .navbar-collapse-custom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-custom-button {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+

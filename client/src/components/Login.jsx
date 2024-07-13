@@ -42,6 +42,7 @@ export default function Login(props) {
       if (response.status === 200 && response.data.success) {
         setUsername(response.data.user.username);
         setIsLoggedIn(true);
+        props.showAlert('Login Success', 'success');
         navigate('/search');
       }
     } catch (error) {
@@ -114,8 +115,9 @@ export default function Login(props) {
           Sign In With Google
         </Button>
         <div className="text-center">
-          <Link to="/signup" className="text-slate-500 hover:text-slate-700">
-            <span>Don't have an account? Sign Up</span>
+        Don't have an account? {" "}
+          <Link to="/signup" className="text-slate-500 hover:text-slate-700 ">
+            <span>Sign Up</span>
           </Link>
         </div>
       </form>

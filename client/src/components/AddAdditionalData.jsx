@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import { UsernameContext } from '../context/usernamecontext';
 export default function AddAdditionalData() {
-  const { username,setUsername } = useContext(UsernameContext);
+  const { username, setUsername } = useContext(UsernameContext);
   const [userInfo, setUserInfo] = useState({
     username: '',
     age: '',
     mobile: '',
   });
   const navigate = useNavigate();
+
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,34 +30,34 @@ export default function AddAdditionalData() {
         const response = await axios.get(`${BASE_URL}/auth/user`, {
           withCredentials: true,
         });
-        if (username) {
-          navigate('/profile'); // Redirect to profile if username exists
+        if (response.username) {
+          navigate('/profile');
         }
       } catch (error) {
         console.error(error);
-        navigate('/signup'); // Redirect to signup if error (e.g., not logged in)
+        navigate('/signup');
       }
     };
 
     checkUserStatus();
-  }, []);
+  }, [username, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Assume a function saveUserInfo exists to save this to your backend
+
     try {
-      const response = await axios.put(`${BASE_URL}/auth/update`, userInfo, {
+      const response = await axios.post(`${BASE_URL}/auth/update`, userInfo, {
         withCredentials: true,
       });
       if (response.status === 200) {
         const json = response.data;
-        
         setUsername(json.user.username);
-        navigate('/addHealthData'); // Or wherever you want to redirect after
-      }
+        navigate('/search');
+      } 
     } catch (error) {
       console.error(error);
-      navigate('/signup');
+      setMessage('Error updating profile');
+      // navigate('/signup');
     }
   };
 
@@ -141,6 +143,7 @@ export default function AddAdditionalData() {
           Submit
         </Button>
       </form>
+      <div className='text-center mt-3'>{message}</div>
     </div>
   );
 }
