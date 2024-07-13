@@ -36,7 +36,7 @@ jobs:
           name: node-app
           path: release.zip
 
-deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
@@ -72,3 +72,4 @@ deploy:
           app-name: 'drugify'
           slot-name: 'Production'
           package: .
+          
