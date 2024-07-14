@@ -82,21 +82,34 @@ const getDrugDetails = async (req, res) => {
     const jsonResponse = response.replace(/```json\n|```/g, '').trim();
     const parsedJson = JSON.parse(jsonResponse);
 
-    // Save the result in the database
-
-      if(parsedJson.Name === null){
-        return res.status(404).json({ message: 'Drug not found' });
+    const convertObjectKeysToLowercase = (obj) => Object.keys(obj).reduce((acc, key) => {
+      const value = obj[key];
+      acc[key.toLowerCase()] = typeof value === 'string' ? value.toLowerCase() : value;
+      return acc;
+    }, {});
+    
+    const parsedJsonLowercase = Object.keys(parsedJson).reduce((acc, key) => {
+      if (key.toLowerCase() === 'alternatives' && Array.isArray(parsedJson[key])) {
+        acc[key.toLowerCase()] = parsedJson[key].map(alternative => convertObjectKeysToLowercase(alternative));
+      } else {
+        acc[key.toLowerCase()] = parsedJson[key];
       }
-
+      return acc;
+    }, {});
+    
+    // Save the result in the database
+    if (parsedJsonLowercase.name === null) {
+      return res.status(404).json({ message: 'Drug not found' });
+    }
+    
     await Result.insertOne({
       user: userId,
-      Name: parsedJson.Name,
-      Permitted: parsedJson.Permitted,
-      Description: parsedJson.Description,
-      Ingredients: parsedJson.Ingredients,
-      Alternatives: parsedJson.Alternatives,
+      name: parsedJsonLowercase.name,
+      permitted: parsedJsonLowercase.permitted,
+      description: parsedJsonLowercase.description,
+      ingredients: parsedJsonLowercase.ingredients,
+      alternatives: parsedJsonLowercase.alternatives,
     });
-
     res.status(200).json({ response: parsedJson });
 
     console.log('User: ', myThreadMessage.content[0].text.value);
