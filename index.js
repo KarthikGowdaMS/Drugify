@@ -16,6 +16,7 @@ const passportSetup = require('./config/passport');
 const authRoute = require('./routes/auth.js');
 const drugRoute = require('./routes/drug.js');
 const resultRoute = require('./routes/search.js');
+const CLIENT_URL = require('./config.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,18 +42,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   cors({
-    // origin: 'http://localhost:3000',
-    origin: 'https://drugify.karthikgowdams.com',
-    // origin:"http://192.168.163.141:3000", // allow to server to accept request from different origin
+    origin:CLIENT_URL, // allow to server to accept request from different origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // allow session cookie from browser to pass through
   })
 );
 app.use((req, res, next) => {
   // access-control-allow-origin http://localhost:3000
-  // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Origin', 'https://drugify.karthikgowdams.com');
-  // res.header('Access-Control-Allow-Origin', 'http://192.168.163.141:3000');
+  res.header('Access-Control-Allow-Origin', CLIENT_URL);
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header(
     'Access-Control-Allow-Headers',

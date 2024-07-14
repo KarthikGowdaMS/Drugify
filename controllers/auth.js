@@ -6,6 +6,7 @@ const User = require('../db.js').collection('Users');
 const ensureAuthenticated = require('../middleware/ensureAuthenticated.js');
 const bCrypt = require('bcrypt-nodejs');
 var { ObjectId } = require('mongodb');
+const CLIENT_URL = require('../config.js');
 
 const getUser = async (req, res) => {
   const id = req.session.passport ? req.session.passport.user : null;
@@ -136,10 +137,10 @@ const successLogin = async (req, res) => {
       // res.redirect(`http://192.168.0.103:3000`);
       const user = await User.findOne({ _id: req.user._id });
       if (!user.username) {
-        return res.redirect(`http://localhost:3000/addAccountData`);
+        return res.redirect(`${CLIENT_URL}/addAccountData`);
       }
 
-      return res.redirect(`http://localhost:3000/search`);
+      return res.redirect(`${CLIENT_URL}/search`);
     }
   } catch (err) {
     console.log(err);
