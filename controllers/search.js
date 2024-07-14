@@ -110,7 +110,7 @@ const getDrugDetails = async (req, res) => {
       ingredients: parsedJsonLowercase.ingredients,
       alternatives: parsedJsonLowercase.alternatives,
     });
-    res.status(200).json({ response: parsedJson });
+    res.status(200).json({ response: parsedJsonLowercase });
 
     console.log('User: ', myThreadMessage.content[0].text.value);
     console.log('Assistant: ', assistantResponseContent);
