@@ -6,7 +6,7 @@ const User = require('../db.js').collection('Users');
 const ensureAuthenticated = require('../middleware/ensureAuthenticated.js');
 const bCrypt = require('bcrypt-nodejs');
 var { ObjectId } = require('mongodb');
-const CLIENT_URL = require('../config.js');
+const {CLIENT_URL} = require('../config.js');
 
 const getUser = async (req, res) => {
   const id = req.session.passport ? req.session.passport.user : null;

@@ -16,7 +16,7 @@ const passportSetup = require('./config/passport');
 const authRoute = require('./routes/auth.js');
 const drugRoute = require('./routes/drug.js');
 const resultRoute = require('./routes/search.js');
-const CLIENT_URL = require('./config.js');
+const {CLIENT_URL} = require('./config.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
