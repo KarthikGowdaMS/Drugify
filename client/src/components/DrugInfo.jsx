@@ -7,22 +7,53 @@ const DrugInfo = (props) => {
   if (!props.drug) {
     return <div className='text-center text-lg'>{props.message}</div>;
   }
+  
 
-  return (
-    <div className="drug-list list-group">
-      <h2>{props.drug.name}</h2>
-      <p className="list-group-item"><strong>Permitted:</strong> {props.drug.permitted}</p>
-      <p className="list-group-item"><strong>Description:</strong> {props.drug.description}</p>
-      <p className="list-group-item"><strong>Ingredients:</strong> {props.drug.ingredients.join(', ')}</p>
-      <div className="list-group-item"><strong>Alternatives:</strong>
-        <ul>
-          {props.drug.alternatives.map((alt, index) => (
-            <li key={index} className="ingredients">{alt.name} - {alt.quantity} mg</li>
-          ))}
-        </ul>
+    const renderField = (key, value) => {
+      if (Array.isArray(value)) {
+        return (
+          <div className="list-group-item" key={key}>
+            <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong>
+            <ul>
+              {value.map((item, index) => (
+                typeof item === 'object' ? (
+                  <li key={index} className="list-group-item">
+                    {Object.entries(item).map(([subKey, subValue]) => `${subKey}: ${subValue}`).join(', ')}
+                  </li>
+                ) : (
+                  <li key={index} className="list-group-item">{item}</li>
+                )
+              ))}
+            </ul>
+          </div>
+        );
+      } else if (typeof value === 'object') {
+        return (
+          <div className="list-group-item" key={key}>
+            <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong>
+            <ul>
+              {Object.entries(value).map(([subKey, subValue], index) => (
+                <li key={index} className="list-group-item">{`${subKey}: ${subValue}`}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      } else {
+        return (
+          <p className="list-group-item" key={key}>
+            <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {String(value)}
+          </p>
+        );
+      }
+    };
+  
+    return (
+      <div className="drug-list list-group">
+        {Object.entries(props.drug).map(([key, value]) => renderField(key, value))}
       </div>
-    </div>
-  );
-};
+    );
+  };
+  
+
 
 export default DrugInfo;

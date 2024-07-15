@@ -31,7 +31,7 @@ const getDrugDetails = async (req, res) => {
       threadByUser[userId], // Use the stored thread ID for this user
       {
         role: 'user',
-        content: `Provide information about the following drug :${drugName}\n\n### Fields:\n- **Name**: The name of the drug.\n- **Permitted**: Is the drug permitted for use by athletes? (Yes/No)\n- **Description**: A brief description of the drug, its uses, and why it might be prohibited.\n- **Ingredients**: [the common name of  main ingredients in the drug.]\n- **Alternatives**: Alternative drugs that are not prohibited with name and quantity in number format. return the json object only.\n\n`,
+        content: `Provide information about the following drug :${drugName}\n\n### Fields:\n- **Name**: The name of the drug.\n- **Permitted**: Is the drug permitted for use by athletes?. If (yes) give the permitted quantity of consumption\n- **Description**: A brief description of the drug, its uses, and why it might be prohibited.\n- **Ingredients**: [the common name of  main ingredients in the drug.]\n- **Alternatives**: Alternative drugs that are not prohibited with name and quantity in number format. return the json object only.\n\n`,
       }
     );
     console.log('This is the message object: ', myThreadMessage, '\n');
@@ -79,6 +79,7 @@ const getDrugDetails = async (req, res) => {
     const assistantResponseContent = assistantMessage.content[0].text.value;
 
     let response = assistantResponseContent;
+    // console.log('Assistant response:', response);
     const jsonResponse = response.replace(/```json\n|```/g, '').trim();
     const parsedJson = JSON.parse(jsonResponse);
 
@@ -127,7 +128,8 @@ const searchHistory = async (req, res) => {
     return res.status(400).json({ message: 'User not found' });
   }
 
-  const results = await Result.find({ user: userId }).toArray();
+  // Exclude _id and user fields from the results
+  const results = await Result.find({ user: userId }, { projection: { _id: 0, user: 0 } }).toArray();
   if (!results) {
     return res.status(404).json({ message: 'No search history found' });
   }
