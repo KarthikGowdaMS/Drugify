@@ -185,7 +185,7 @@ export default function SignUp(props) {
           <TextInput
             id="email1"
             type="email"
-            placeholder="name@unicampnie.com"
+            placeholder="name@email.com"
             required
             className="w-full"
             onChange={handleChange}
